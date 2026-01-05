@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with this codebase.
 
+## Important
+
+**Do NOT start long-running services** (e.g., `src.main`, WebSocket listeners). Only run short test commands.
+
 ## Project Overview
 
 Polymarket Watcher is a real-time anomaly detection system for Polymarket trades. It monitors the Polymarket WebSocket feed and flags suspicious trading patterns:
