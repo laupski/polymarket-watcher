@@ -1,11 +1,19 @@
 detection:
   # Low History Detector settings
   # Minimum trade size in USD to trigger analysis
-  large_trade_usd: 20000
+  large_trade_usd: 5000
   # Maximum number of historical trades to be considered "low history"
-  low_history_threshold: 10
+  low_history_threshold: 20
   # How long to cache wallet history (in hours)
   cache_ttl_hours: 24
+
+  # Concentrated Betting Detector settings
+  # Minimum total volume to flag
+  min_volume_usd: 10000
+  # Maximum trades to be considered "concentrated"
+  max_trades_for_concentration: 25
+  # Minimum average trade size to flag
+  min_avg_trade_usd: 1000
 
   # Profitable Trader Detector settings
   # Minimum trades observed before analyzing a wallet

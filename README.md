@@ -5,11 +5,13 @@ A real-time monitoring system that detects anomalous trading behavior on Polymar
 ## Features
 
 - **Real-time trade monitoring** via Polymarket WebSocket (RTDS)
-- **Low-history detection** - flags large trades from wallets with few historical trades
+- **Low-history detection** - flags large trades (>$5k) from wallets with few historical trades (<20)
+- **Concentrated betting detection** - flags high-volume accounts with few trades focused on specific events
 - **Profitable trader detection** - identifies wallets with suspicious win rates and trading patterns
 - **Wallet profitability analyzer** - CLI tool to analyze any wallet's trading strategy
 - **SQLite storage** - persists trades, wallet cache, and alerts for analysis
 - **Configurable thresholds** - adjust detection parameters via YAML config
+- **Test harness** - automated testing against known anomaly accounts
 - **Extensible architecture** - easy to add new detection rules
 
 ## Installation
@@ -54,6 +56,9 @@ uv run python -m src.analyze @gabagool22 @distinct-baguette @Account88888 --comp
 
 # Fetch more historical trades
 uv run python -m src.analyze @gabagool22 --max-trades 10000
+
+# Quick portfolio summary (open positions only, faster)
+uv run python -m src.analyze @gabagool22 --quick
 ```
 
 ### Example Output
@@ -203,6 +208,16 @@ self.engine.add_detector(my_detector)
 - [ ] Web dashboard for viewing alerts
 - [ ] Historical backtesting
 - [ ] ML-based anomaly detection
+
+## Changelog
+
+### Unreleased
+
+- **Concentrated Betting Detector** - flags accounts with high volume but few trades (e.g., $40k across 15 trades)
+- **Quick Portfolio Summary** (`--quick` flag) - fast overview using positions endpoint
+- **Test Harness** - automated tests against known anomaly accounts (`uv run python -m tests.test_anomaly_detection`)
+- **Lowered thresholds** - `large_trade_usd`: $20k → $5k, `low_history_threshold`: 10 → 20 trades
+- **Bug fixes** - timestamp parsing, memory limits for large trade histories
 
 ## License
 
