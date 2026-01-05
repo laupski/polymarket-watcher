@@ -1,0 +1,37 @@
+detection:
+  # Low History Detector settings
+  # Minimum trade size in USD to trigger analysis
+  large_trade_usd: 20000
+  # Maximum number of historical trades to be considered "low history"
+  low_history_threshold: 10
+  # How long to cache wallet history (in hours)
+  cache_ttl_hours: 24
+
+  # Profitable Trader Detector settings
+  # Minimum trades observed before analyzing a wallet
+  min_trades_for_analysis: 50
+  # Minimum profit factor (win/loss ratio) to flag
+  min_profit_factor: 2.0
+  # Minimum win rate to flag as suspicious
+  min_win_rate: 0.65
+  # Trades per day to be considered high-frequency
+  high_frequency_threshold: 100
+
+logging:
+  level: INFO
+  file: logs/alerts.log
+  # Maximum log file size in MB before rotation
+  max_file_size_mb: 10
+  # Number of backup log files to keep
+  backup_count: 5
+
+api:
+  # Polymarket API endpoints
+  data_api_base: "https://data-api.polymarket.com"
+  gamma_api_base: "https://gamma-api.polymarket.com"
+  websocket_url: "wss://ws-subscriptions-clob.polymarket.com/ws/market"
+  # Rate limiting
+  requests_per_minute: 60
+
+database:
+  path: "data/polymarket_watcher.db"
